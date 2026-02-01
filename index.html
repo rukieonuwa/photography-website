@@ -2356,10 +2356,13 @@
                 }
             });
 
-            // Update email links in services note
+            // Update email links in services note (only simple mailto links without query params)
             const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
             emailLinks.forEach(link => {
-                link.href = `mailto:${CONFIG.contact.email}`;
+                // Only update simple mailto links (no subject/body), preserve pricing button links
+                if (!link.href.includes('?')) {
+                    link.href = `mailto:${CONFIG.contact.email}`;
+                }
             });
 
             // Set hero image
