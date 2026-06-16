@@ -504,8 +504,8 @@
 
         .portfolio-preview-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -533,7 +533,7 @@
         .portfolio-preview-item .portfolio-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -552,13 +552,11 @@
             font-size: 0.9rem;
             color: var(--warm);
             letter-spacing: 2px;
-            margin-bottom: 0.5rem;
         }
 
-        .portfolio-preview-item .portfolio-overlay h4 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--white);
+        .portfolio-preview-item .portfolio-overlay h4,
+        .portfolio-item .portfolio-overlay h4 {
+            display: none;
         }
 
         .portfolio-cta {
@@ -842,7 +840,7 @@
         .portfolio-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -861,22 +859,6 @@
             font-size: 0.85rem;
             color: var(--warm);
             letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            transform: translateY(20px);
-            transition: transform 0.5s ease 0.1s;
-        }
-
-        .portfolio-overlay h4 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--white);
-            transform: translateY(20px);
-            transition: transform 0.5s ease 0.2s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay span,
-        .portfolio-item:hover .portfolio-overlay h4 {
-            transform: translateY(0);
         }
 
         /* About Section - Light Version */
@@ -934,6 +916,7 @@
 
         .about-img:nth-child(2) {
             margin-top: 3rem;
+            overflow: hidden;
         }
 
         .about-img img {
@@ -944,6 +927,12 @@
             filter: grayscale(20%);
             transition: filter 0.5s ease;
             image-rendering: auto;
+        }
+
+        .about-img:nth-child(2) img {
+            object-position: 65% 55%;
+            transform: scale(1.25);
+            transform-origin: 65% 55%;
         }
 
         .about-img:hover img {
@@ -1705,7 +1694,7 @@
             }
 
             .portfolio-preview-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
 
@@ -1897,6 +1886,51 @@
         <div class="section-intro">
             <span class="section-label">selected works</span>
             <h2 class="section-title">A glimpse into <em>stories</em> told</h2>
+        </div>
+
+        <div class="portfolio-preview-grid">
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/fb8aaf0816a66d3469fc2b3af49d27967932f089a50a0b1277d77d3616b4af65" alt="Golden Touch">
+                <div class="portfolio-overlay">
+                    <span>Company Branding</span>
+                    <h4>Golden Touch</h4>
+                </div>
+            </div>
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/d6706dac2340a4e405680299d6374d581d95fe58bac6e894c8331d3e507996c6" alt="Urban Grace">
+                <div class="portfolio-overlay">
+                    <span>Editorial</span>
+                    <h4>Urban Grace</h4>
+                </div>
+            </div>
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/40bcec1ef8b204877fe860ba081d19c206f4d5e7ad8a85aa80937bb28268aecf" alt="Styled Details">
+                <div class="portfolio-overlay">
+                    <span>Company Branding</span>
+                    <h4>Styled Details</h4>
+                </div>
+            </div>
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/87a801987f5911c61d0805d5103511552214c9b4963c60cf7929c6d3552addf2" alt="Street Style">
+                <div class="portfolio-overlay">
+                    <span>Editorial</span>
+                    <h4>Street Style</h4>
+                </div>
+            </div>
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/8537675b2527b085a942dce96ed812b7b202e3ffc0bc6a93f08ba777d4b8192f" alt="Bold Ambition">
+                <div class="portfolio-overlay">
+                    <span>Personal Branding</span>
+                    <h4>Bold Ambition</h4>
+                </div>
+            </div>
+            <div class="portfolio-preview-item">
+                <img src="https://pfst.cf2.poecdn.net/base/image/faa4ca5e2b6a2cd6b78200e8c1a99be3518bf54afaa19da86a7f4bcaa951959e" alt="Brand Details">
+                <div class="portfolio-overlay">
+                    <span>Company Branding</span>
+                    <h4>Brand Details</h4>
+                </div>
+            </div>
         </div>
 
         <div class="portfolio-cta">
