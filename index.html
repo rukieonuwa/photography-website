@@ -977,50 +977,7 @@
             opacity: 0.85;
         }
 
-        /* Philosophy Section */
-        .philosophy {
-            background: var(--white);
-            text-align: center;
-        }
 
-        .philosophy-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .philosophy blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.6;
-            color: var(--charcoal);
-            position: relative;
-        }
-
-        .philosophy blockquote em {
-            color: var(--warm);
-            font-style: normal;
-        }
-
-        .philosophy blockquote::before,
-        .philosophy blockquote::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 1px;
-            background: var(--warm);
-            margin: 3rem auto;
-        }
-
-        .philosophy cite {
-            font-family: 'Questrial', sans-serif;
-            font-style: normal;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text);
-        }
 
         /* Process Section */
         .process {
@@ -1492,59 +1449,12 @@
         footer {
             background: var(--black);
             color: var(--white);
-            padding: 6rem 6% 3rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-        }
-
-        .footer-brand .logo {
-            height: 100px;
-            width: 100px;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--white);
-        }
-
-        .footer-brand p {
-            font-size: 0.95rem;
-            line-height: 2;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .footer-links h4 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            color: var(--warm);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            line-height: 2.5;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--warm);
-            padding-left: 10px;
+            padding: 2rem 6%;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 0;
         }
 
         .footer-bottom p {
@@ -1587,8 +1497,18 @@
             }
 
             .hero-image {
-                height: 60vh;
-                padding: 2rem;
+                height: auto;
+                padding: 1rem 2rem 2rem;
+            }
+
+            .hero-image-wrapper {
+                height: auto;
+            }
+
+            .hero-image img {
+                height: auto;
+                object-fit: contain;
+                object-position: center center;
             }
 
             .hero-image-wrapper::before {
@@ -1622,9 +1542,6 @@
                 flex: 0 0 45%;
             }
 
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
 
             .portfolio-tabs {
                 gap: 0.75rem;
@@ -1739,18 +1656,10 @@
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
             .social-links {
                 justify-content: center;
             }
 
-            .philosophy blockquote {
-                font-size: 2rem;
-            }
 
             .testimonial-quote {
                 font-size: 1.6rem;
@@ -2180,20 +2089,10 @@
             </div>
             <div class="about-content">
                 <span class="section-label">the artist</span>
-                <h2>Creating art that moves <em>hearts</em> and builds <em>empires</em></h2>
-                <p>I believe every person carries a story worth telling—a narrative woven from dreams, ambitions, and the quiet moments in between. My work exists at the intersection of artistry and strategy, where beautiful imagery meets purposeful intention.</p>
-                <p>With each session, I seek to unveil the extraordinary within the everyday, crafting visuals that don't just represent your brand but embody its very soul. This is photography as poetry—each frame a verse in your unfolding story.</p>
+                <h2>Your story deserves images that actually <em>feel</em> like you</h2>
+                <p>I know how hard it is to find photos that truly represent who you are and what you've built. That's exactly why I do this. I want to give you images you're genuinely proud to share, ones that make people stop scrolling and pay attention to your brand.</p>
+                <p>Every session is a collaboration. We plan together, shoot together, and create something that feels intentional and real. No stiff poses, no cookie-cutter shots. Just you, at your best, with visuals that actually work for your business.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Philosophy Section -->
-    <section class="philosophy">
-        <div class="philosophy-content">
-            <blockquote>
-                "The most powerful images are those that reveal not what we look like, but <em>who we truly are</em>—the light we carry, the dreams we hold, the legacy we're building."
-            </blockquote>
-            <cite>— R.U.K Studio Philosophy</cite>
         </div>
     </section>
 
@@ -2241,7 +2140,7 @@
                 <ul class="pricing-features">
                     <li>90-minute session</li>
                     <li>One curated location</li>
-                    <li>15 retouched images</li>
+                    <li>7 retouched images</li>
                     <li>Online viewing gallery</li>
                     <li>Styling consultation</li>
                 </ul>
@@ -2254,7 +2153,7 @@
                 <ul class="pricing-features">
                     <li>Half-day experience</li>
                     <li>Two curated locations</li>
-                    <li>40 retouched images</li>
+                    <li>12 retouched images</li>
                     <li>Creative direction</li>
                     <li>Wardrobe styling guide</li>
                     <li>Brand strategy session</li>
@@ -2268,7 +2167,7 @@
                 <ul class="pricing-features">
                     <li>Full-day immersion</li>
                     <li>Unlimited locations</li>
-                    <li>75+ retouched images</li>
+                    <li>18 retouched images</li>
                     <li>Complete brand strategy</li>
                     <li>Professional styling</li>
                     <li>Quarterly refresh option</li>
@@ -2382,39 +2281,6 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="https://pfst.cf2.poecdn.net/base/image/dce8f0306b78e55221cb8fbb3d3358360cc13b56bc566eabdd7604e05278e34d?w=1024&h=1024&pmaid=555394729" alt="R.U.K Studio" class="logo">
-                <p>Artful imagery for those who dare to stand apart. Every frame, a story. Every session, a transformation.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Navigate</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Connect</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Company Branding</a></li>
-                    <li><a href="#">Personal Branding</a></li>
-                    <li><a href="#">Editorial</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="https://www.instagram.com/r.u.k.studio?igsh=MWR1NHZpajcwc3kzag%3D%3D&utm_source=qr" target="_blank">Instagram</a></li>
-                    <li><a href="#">TikTok</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="footer-bottom">
             <p>&copy; 2026 R.U.K Studio — All rights reserved</p>
         </div>
