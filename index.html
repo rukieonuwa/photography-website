@@ -417,14 +417,42 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 0;
-            background: var(--charcoal);
-            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
         }
 
-        .service-card:hover::before {
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
+            background: rgba(20, 20, 18, 0.65);
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .service-card:hover::before,
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-company::before {
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/b112c8f2c87ffcd04945045e14cbc8ed6100608540dc98c8e959cc6f8f3dad6f');
+        }
+
+        .service-personal::before {
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/9086ca6a3bf7f0b5488bb3d737b01a83c1862a907e9dbdf527aa7a46269723b0');
+        }
+
+        .service-editorial::before {
+            background-image: url('https://pfst.cf2.poecdn.net/base/image/87a801987f5911c61d0805d5103511552214c9b4963c60cf7929c6d3552addf2');
         }
 
         .service-card > * {
@@ -434,7 +462,7 @@
         }
 
         .service-card:hover {
-            border-color: var(--charcoal);
+            border-color: rgba(184, 149, 110, 0.5);
         }
 
         .service-card:hover * {
@@ -1769,17 +1797,17 @@
             <h2 class="section-title">Crafted experiences for <em>extraordinary</em> brands</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card service-company">
                 <div class="service-number">01</div>
                 <h3>Company Branding</h3>
                 <p>Creative photography and visual storytelling for brands and businesses, crafted for campaigns, launches, and online platforms. Intentional imagery designed to connect with your audience.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card service-personal">
                 <div class="service-number">02</div>
                 <h3>Personal & Lifestyle Branding</h3>
                 <p>Portrait and lifestyle sessions for creatives, founders, and individuals who want content that reflects their real life, personal style, and unique story.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card service-editorial">
                 <div class="service-number">03</div>
                 <h3>Editorial Sessions</h3>
                 <p>Magazine-worthy imagery with artistic direction for those who desire something truly exceptional.</p>
@@ -2151,7 +2179,7 @@
                 <h3>The Narrative</h3>
                 <div class="price-cta">Contact for Quote</div>
                 <ul class="pricing-features">
-                    <li>Half-day experience</li>
+                    <li>Half-day shoot</li>
                     <li>Two curated locations</li>
                     <li>12 retouched images</li>
                     <li>Creative direction</li>
@@ -2165,7 +2193,7 @@
                 <h3>The Legacy</h3>
                 <div class="price-cta">Contact for Quote</div>
                 <ul class="pricing-features">
-                    <li>Full-day immersion</li>
+                    <li>Full-day shoot</li>
                     <li>Unlimited locations</li>
                     <li>18 retouched images</li>
                     <li>Complete brand strategy</li>
