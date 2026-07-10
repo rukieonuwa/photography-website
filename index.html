@@ -1140,95 +1140,55 @@
             background: var(--white);
         }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
+        .investment-inquiry {
+            max-width: 920px;
             margin: 0 auto;
-        }
-
-        .pricing-card {
-            padding: 4rem 3rem;
+            padding: 5rem;
             background: var(--cream);
-            border: 1px solid transparent;
-            transition: all 0.5s ease;
+            border: 1px solid rgba(184, 149, 110, 0.25);
+            text-align: center;
             position: relative;
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
         }
 
-        .pricing-card.featured {
-            background: var(--charcoal);
-            color: var(--white);
+        .investment-inquiry::before {
+            content: 'R.U.K';
+            position: absolute;
+            right: -1rem;
+            bottom: -5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12rem;
+            color: rgba(184, 149, 110, 0.08);
+            pointer-events: none;
         }
 
-        .pricing-card:hover {
-            border-color: var(--warm);
-            transform: translateY(-10px);
-        }
-
-        .pricing-card .card-label {
+        .investment-inquiry .card-label {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-size: 0.9rem;
             color: var(--warm);
             letter-spacing: 2px;
             margin-bottom: 1rem;
-        }
-
-        .pricing-card h3 {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-card.featured h3 {
-            color: var(--white);
-        }
-
-        .price-cta {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--warm);
-            margin: 1.5rem 0;
             display: block;
         }
 
-        .pricing-card.featured .price-cta {
-            color: var(--warm-light);
+        .investment-inquiry h3 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(184, 149, 110, 0.3);
-            flex-grow: 1;
-        }
-
-        .pricing-features li {
-            padding: 0.8rem 0;
-            font-size: 0.95rem;
+        .investment-inquiry p {
+            max-width: 660px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
             color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            position: relative;
         }
 
-        .pricing-card.featured .pricing-features li {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .pricing-features li::before {
-            content: '\2014';
-            color: var(--warm);
-        }
-
-        .pricing-btn {
+        .investment-btn {
             display: inline-block;
-            width: 100%;
             padding: 1.2rem 2rem;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
@@ -1240,21 +1200,12 @@
             background: transparent;
             transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
         }
 
-        .pricing-card.featured .pricing-btn {
-            border-color: var(--warm);
-            color: var(--warm);
-        }
-
-        .pricing-btn:hover {
+        .investment-btn:hover {
             background: var(--charcoal);
             color: var(--white);
-        }
-
-        .pricing-card.featured .pricing-btn:hover {
-            background: var(--warm);
-            color: var(--dark);
         }
 
         /* Contact Section */
@@ -1558,8 +1509,8 @@
                 order: -1;
             }
 
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .investment-inquiry {
+                padding: 4rem 3rem;
             }
 
             .process-timeline {
@@ -1638,8 +1589,7 @@
                 font-size: 2.5rem;
             }
 
-            .services-grid,
-            .pricing-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1779,8 +1729,8 @@
                 <li><a href="#home">home</a></li>
                 <li><a href="#services">services</a></li>
                 <li><a href="#portfolio">portfolio</a></li>
-                <li><a href="#about">about</a></li>
                 <li><a href="#pricing">investment</a></li>
+                <li><a href="#about">about</a></li>
                 <li><a href="#contact">connect</a></li>
             </ul>
             <div class="menu-btn">
@@ -2206,26 +2156,6 @@
         </div>
     </div>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-grid">
-            <div class="about-images">
-                <div class="about-img">
-                    <img src="https://pfst.cf2.poecdn.net/base/image/4c7ba7ff3c3078a5449cb503634080b40e4bc0e96f626edec7f8e51710f685e6" alt="R.U.K Studio Photographer">
-                </div>
-                <div class="about-img">
-                    <img src="https://pfst.cf2.poecdn.net/base/image/30f5dfadd2dd29d9f8a0bc8cd323eebe7a65839a465ec6b2d9dc4e8ee6bc35f4" alt="Behind the Scenes">
-                </div>
-            </div>
-            <div class="about-content">
-                <span class="section-label">the artist</span>
-                <h2>Your story deserves images that actually <em>feel</em> like you</h2>
-                <p>I know how hard it is to find photos that truly represent who you are and what you've built. That's exactly why I do this. I want to give you images you're genuinely proud to share, ones that make people stop scrolling and pay attention to your brand.</p>
-                <p>Every session is a collaboration. We plan together, shoot together, and create something that feels intentional and real. No stiff poses, no cookie-cutter shots. Just you, at your best, with visuals that actually work for your business.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Process Section -->
     <section class="process">
         <div class="section-intro">
@@ -2260,49 +2190,32 @@
     <section class="pricing" id="pricing">
         <div class="section-intro">
             <span class="section-label">investment</span>
-            <h2 class="section-title">Thoughtfully crafted <em>experiences</em></h2>
+            <h2 class="section-title">Let's talk about your <em>vision</em></h2>
         </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <span class="card-label">essential</span>
-                <h3>The Portrait</h3>
-                <div class="price-cta">Contact for Quote</div>
-                <ul class="pricing-features">
-                    <li>90-minute session</li>
-                    <li>One curated location</li>
-                    <li>7 retouched images</li>
-                    <li>Online viewing gallery</li>
-                    <li>Styling consultation</li>
-                </ul>
-                <a href="/cdn-cgi/l/email-protection#87eee9f6f2eef5eee2f4c7f5f2ecf4f4f3f2e3eee8a9e4e8eab8f4f2e5ede2e4f3bad5e2f6f2e2f4f3eee9e0a2b5b7d6f2e8f3e2a2b5b7c1e8f5a2b5b7d3efe2a2b5b7d7e8f5f3f5e6eef3a2b5b7d7e6e4ece6e0e2a1e5e8e3febacfeea2b5c4a2b7c6a2b7c6cea0eaa2b5b7eee9f3e2f5e2f4f3e2e3a2b5b7eee9a2b5b7d3efe2a2b5b7d7e8f5f3f5e6eef3a2b5b7f7e6e4ece6e0e2a2b5b7e6e9e3a2b5b7f0e8f2ebe3a2b5b7ebe8f1e2a2b5b7f3e8a2b5b7ebe2e6f5e9a2b5b7eae8f5e2a2b5b7e6e5e8f2f3a2b5b7f7f5eee4eee9e0a2b5b7e6e9e3a2b5b7e6f1e6eeebe6e5eeebeef3fea9a2b7c6a2b7c6d3efe6e9eca2b5b7fee8f2a6" class="pricing-btn">Request a Quote</a>
+        <div class="investment-inquiry">
+            <span class="card-label">booking inquiries</span>
+            <h3>Ready to work together?</h3>
+            <p>If you want to work with me, have any questions, or would like to book a session, please reach out through the contact form below. Every project is personal, and I would love to hear what you are imagining.</p>
+            <a href="#contact" class="investment-btn">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-images">
+                <div class="about-img">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/4c7ba7ff3c3078a5449cb503634080b40e4bc0e96f626edec7f8e51710f685e6" alt="R.U.K Studio Photographer">
+                </div>
+                <div class="about-img">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/30f5dfadd2dd29d9f8a0bc8cd323eebe7a65839a465ec6b2d9dc4e8ee6bc35f4" alt="Behind the Scenes">
+                </div>
             </div>
-            <div class="pricing-card featured">
-                <span class="card-label">signature</span>
-                <h3>The Narrative</h3>
-                <div class="price-cta">Contact for Quote</div>
-                <ul class="pricing-features">
-                    <li>Half-day experience</li>
-                    <li>Two curated locations</li>
-                    <li>12 retouched images</li>
-                    <li>Creative direction</li>
-                    <li>Wardrobe styling guide</li>
-                    <li>Brand strategy session</li>
-                </ul>
-                <a href="/cdn-cgi/l/email-protection#fe97908f8b978c979b8dbe8c8b958d8d8a8b9a9791d09d9193c18d8b9c949b9d8ac3ac9b8f8b9b8d8a979099dbccceaf8b918a9bdbccceb8918cdbccceaa969bdbccceb09f8c8c9f8a97889bdbccceae9f9d959f999bd89c919a87c3b697dbccbddbcebfdbcebfb7d993dbccce97908a9b8c9b8d8a9b9adbccce9790dbccceaa969bdbccceb09f8c8c9f8a97889bdbccce8e9f9d959f999bdbccce9f909adbccce89918b929adbccce9291889bdbccce8a91dbccce929b9f8c90dbccce93918c9bdbccce9f9c918b8adbccce8e8c979d979099dbccce9f909adbccce9f889f97929f9c9792978a87d0dbcebfdbcebfaa969f9095dbccce87918bdf" class="pricing-btn">Request a Quote</a>
-            </div>
-            <div class="pricing-card">
-                <span class="card-label">bespoke</span>
-                <h3>The Legacy</h3>
-                <div class="price-cta">Contact for Quote</div>
-                <ul class="pricing-features">
-                    <li>Full-day immersion</li>
-                    <li>Unlimited locations</li>
-                    <li>18 retouched images</li>
-                    <li>Complete brand strategy</li>
-                    <li>Professional styling</li>
-                    <li>Quarterly refresh option</li>
-                </ul>
-                <a href="/cdn-cgi/l/email-protection#e98087989c809b808c9aa99b9c829a9a9d9c8d8086c78a8684d69a9c8b838c8a9dd4bb8c989c8c9a9d80878eccdbd9b89c869d8cccdbd9af869bccdbd9bd818cccdbd9a58c8e888a90ccdbd9b9888a82888e8ccf8b868d90d4a180ccdbaaccd9a8ccd9a8a0ce84ccdbd980879d8c9b8c9a9d8c8dccdbd98087ccdbd9bd818cccdbd9a58c8e888a90ccdbd999888a82888e8cccdbd988878dccdbd99e869c858dccdbd985869f8cccdbd99d86ccdbd9858c889b87ccdbd984869b8cccdbd9888b869c9dccdbd9999b808a80878eccdbd988878dccdbd9889f888085888b8085809d90c7ccd9a8ccd9a8bd81888782ccdbd990869cc8" class="pricing-btn">Request a Quote</a>
+            <div class="about-content">
+                <span class="section-label">the artist</span>
+                <h2>Your story deserves images that actually <em>feel</em> like you</h2>
+                <p>I know how hard it is to find photos that truly represent who you are and what you've built. That's exactly why I do this. I want to give you images you're genuinely proud to share, ones that make people stop scrolling and pay attention to your brand.</p>
+                <p>Every session is a collaboration. We plan together, shoot together, and create something that feels intentional and real. No stiff poses, no cookie-cutter shots. Just you, at your best, with visuals that actually work for your business.</p>
             </div>
         </div>
     </section>
@@ -2503,7 +2416,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        document.querySelectorAll('a, button, .portfolio-item, .service-card, .pricing-card').forEach(el => {
+        document.querySelectorAll('a, button, .portfolio-item, .service-card, .investment-inquiry').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
@@ -2700,7 +2613,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .portfolio-item, .process-step, .pricing-card').forEach(el => {
+        document.querySelectorAll('.service-card, .portfolio-item, .process-step, .investment-inquiry').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
