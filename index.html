@@ -156,9 +156,8 @@
         }
 
         .portfolio-home-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
+            columns: 3;
+            column-gap: 0.6rem;
             max-width: 1600px;
             margin: 0 auto;
         }
@@ -167,7 +166,15 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 4/5;
+            break-inside: avoid;
+            margin-bottom: 0.6rem;
+            line-height: 0;
+        }
+
+        .portfolio-home-item img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .portfolio-home-item img {
@@ -972,8 +979,8 @@
             }
 
             .portfolio-home-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
+                columns: 3;
+                column-gap: 0.6rem;
             }
         }
 
@@ -1100,12 +1107,12 @@
             }
 
             .portfolio-home-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
+                columns: 2;
+                column-gap: 0.6rem;
             }
 
-            .portfolio-home-item:nth-child(even) {
-                margin-top: 1.5rem;
+            .portfolio-home-item {
+                margin-bottom: 0.6rem;
             }
 
             .portfolio-home-item .photo-title h3 {
