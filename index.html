@@ -77,14 +77,29 @@
             margin: 0 auto;
         }
 
-        .logo {
-            height: 60px;
-            width: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            transition: all 0.5s ease;
-            border: 1px solid var(--black);
+        .logo-text {
             cursor: pointer;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .logo-name {
+            color: #000000;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: -4px;
+        }
+
+        .logo-tag {
+            color: #b8956e;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            display: block;
         }
 
         .nav-links {
@@ -1166,9 +1181,8 @@
                 font-size: 6rem;
             }
 
-            .logo {
-                height: 50px;
-                width: 50px;
+            .logo-text {
+                font-size: 0.9rem;
             }
 
             .section-title {
@@ -1192,7 +1206,7 @@
     <!-- Header -->
     <header>
         <nav>
-            <img src="https://pfst.cf2.poecdn.net/base/image/5d23b0edead588952666ade6c56802c7ca97455e4fe806f33b70158889e005a5?w=1024&h=1024" alt="R.U.K Studio" class="logo" data-page="home">
+            <span class="logo-text" data-page="home"><span class="logo-name">RUKIE ONUWA</span><br><span class="logo-tag">PHOTOGRAPHY</span></span>
             <ul class="nav-links">
                 <li><a data-page="home" class="active">home</a></li>
                 <li><a data-page="services">services</a></li>
@@ -1498,7 +1512,7 @@
             });
 
             // Logo click goes home
-            document.querySelector('.logo').addEventListener('click', function() {
+            document.querySelector('.logo-text').addEventListener('click', function() {
                 navigateTo('home');
             });
 
