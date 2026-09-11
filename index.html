@@ -163,9 +163,43 @@
             padding: 5% 8% 4rem;
         }
 
+        .portfolio-view-heading {
+            max-width: 1600px;
+            margin: 0 auto 1.25rem;
+        }
+
+        .portfolio-view-heading[hidden] {
+            display: none;
+        }
+
+        .portfolio-back-button {
+            appearance: none;
+            border: 0;
+            background: none;
+            padding: 0;
+            margin: 0 0 0.8rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.66rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        .portfolio-back-button:hover {
+            color: var(--warm);
+        }
+
+        .portfolio-view-heading h1 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 300;
+            line-height: 1;
+        }
+
         .portfolio-home-grid {
-            columns: 3;
-            column-gap: 0.6rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
             max-width: 1600px;
             margin: 0 auto;
         }
@@ -174,16 +208,31 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            break-inside: avoid;
-            margin-bottom: 0.6rem;
+            aspect-ratio: 3 / 2;
             line-height: 0;
         }
 
         .portfolio-home-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             object-fit: cover;
+        }
+
+        .portfolio-home-grid.gallery-mode .portfolio-home-item {
+            aspect-ratio: auto;
+            break-inside: avoid;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-home-grid.gallery-mode .portfolio-home-item img {
+            height: auto;
+        }
+
+        .portfolio-home-grid.gallery-mode {
+            display: block;
+            columns: 3;
+            column-gap: 0.75rem;
         }
 
         .portfolio-home-item .photo-title {
@@ -195,8 +244,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: none;
-            opacity: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
+            opacity: 1;
             z-index: 2;
         }
 
@@ -208,11 +257,8 @@
             text-align: center;
             letter-spacing: 4px;
             text-transform: uppercase;
-        }
-
-        .portfolio-home-item:hover .photo-title {
-            opacity: 1;
-            transition: none;
+            line-height: 1.4;
+            text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
         }
 
         /* Lightbox */
@@ -989,8 +1035,7 @@
             }
 
             .portfolio-home-grid {
-                columns: 3;
-                column-gap: 0.6rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -1117,12 +1162,22 @@
             }
 
             .portfolio-home-grid {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+
+            .portfolio-home-grid.gallery-mode {
+                display: block;
                 columns: 2;
-                column-gap: 0.6rem;
+                column-gap: 0.65rem;
+            }
+
+            .portfolio-home-grid.gallery-mode .portfolio-home-item {
+                margin-bottom: 0.65rem;
             }
 
             .portfolio-home-item {
-                margin-bottom: 0.6rem;
+                aspect-ratio: 3 / 2;
             }
 
             .portfolio-home-item .photo-title h3 {
@@ -1195,19 +1250,23 @@
             }
 
             .portfolio-home-grid {
-                columns: 2;
-                column-gap: 0.4rem;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
 
             .portfolio-home-item {
-                margin-bottom: 0.4rem;
+                aspect-ratio: 3 / 2;
             }
 
             .portfolio-home-item img {
                 width: 100%;
-                height: auto;
+                height: 100%;
                 display: block;
                 object-fit: cover;
+            }
+
+            .portfolio-home-grid.gallery-mode .portfolio-home-item img {
+                height: auto;
             }
         }
     </style>
@@ -1236,6 +1295,10 @@
     <!-- ============================= -->
     <div class="page active" id="page-home">
         <div class="portfolio-home">
+            <div class="portfolio-view-heading" id="portfolioViewHeading" hidden>
+                <button class="portfolio-back-button" id="portfolioBackButton" type="button">← All works</button>
+                <h1 id="portfolioViewTitle"></h1>
+            </div>
             <div class="portfolio-home-grid" id="portfolioHomeGrid">
                 <!-- Items will be populated by JS -->
             </div>
@@ -1265,7 +1328,7 @@
             </div>
             <div class="hero-image">
                 <div class="hero-image-wrapper">
-                    <img src="https://pfst.cf2.poecdn.net/base/image/1d100d55df71412157b290702e5ee565a2683fdcac45aff053fd48cfc8071585?w=1168&h=1800" alt="R.U.K Studio Photography">
+                    <img src="https://rukieonuwa.github.io/photography-website/assets/images/services-hero.jpg" alt="Feran Jewelry campaign">
                 </div>
             </div>
         </div>
@@ -1420,14 +1483,14 @@
     <!-- Footer (all pages) -->
     <footer>
         <div class="footer-social-links">
-            <a href="https://www.instagram.com/rukieonuwa?igsh=bHFkcHZlcmxvdWgw" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/byrukieonuwa?stkn=MWR1NHZpajcwc3kzag%3D%3D&amp;utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a>
             <a href="mailto:connect@rukieonuwa.com" target="_blank"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="footer-bottom">
-            <p>RukieOnuwa Photography - Vancouver, BC</p>
-            <p>&copy; 2026 R.U.K Studio &mdash; All rights reserved</p>
+            <p>Vancouver BC</p>
+            <p>&copy; 2026 Rukie Onuwa, all rights reserved.</p>
         </div>
     </footer>
 
@@ -1435,36 +1498,85 @@
         // ============================================
         // PORTFOLIO DATA
         // ============================================
-        const portfolioItems = Array.from({ length: 37 }, (_, index) => {
-            const number = index + 1;
-            return {
-                src: `https://rukieonuwa.github.io/photography-website/assets/images/portfolio-${String(number).padStart(2, '0')}.jpg`,
-                title: `Portfolio ${String(number).padStart(2, '0')}`,
-                category: 'portfolio'
-            };
-        });
+        const imagePath = (number) =>
+            `https://rukieonuwa.github.io/photography-website/assets/images/portfolio-${String(number).padStart(2, '0')}.jpg`;
+
+        // Campaign titles, covers, and photo groupings.
+        const campaigns = [
+            {
+                id: 'dale-xtreme-fit',
+                title: 'Dale x Xtreme Fit',
+                coverSrc: 'https://rukieonuwa.github.io/photography-website/assets/images/dale-xtreme-fit-cover-02.jpg',
+                images: [34, 29, 30, 31, 32, 33, 35, 36, 37]
+            },
+            {
+                id: 'derin-editorial',
+                title: 'Derin Editorial',
+                cover: 1,
+                images: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            },
+            {
+                id: 'feran-jewelry',
+                title: 'Feran Jewelry',
+                coverSrc: 'https://rukieonuwa.github.io/photography-website/assets/images/feran-jewelry-cover.jpg',
+                images: [21, 19, 20, 22, 23]
+            },
+            {
+                id: 'cacc-race',
+                title: 'CACC Race',
+                cover: 27,
+                images: [27, 24, 25, 26, 28]
+            },
+            {
+                id: 'face-behind-feran',
+                title: 'The Face Behind Feran',
+                cover: 11,
+                images: [11, 12, 13, 14, 15, 16, 17, 18]
+            }
+        ];
 
 
         // ============================================
         // RENDER PORTFOLIO GRID
         // ============================================
-        const categoryLabels = { portfolio: "Selected Work" };
-
-        function renderPortfolio() {
+        function renderCampaigns() {
             const grid = document.getElementById('portfolioHomeGrid');
+            const heading = document.getElementById('portfolioViewHeading');
             grid.innerHTML = '';
+            grid.classList.remove('gallery-mode');
+            heading.hidden = true;
 
-            portfolioItems.forEach(item => {
+            campaigns.forEach(campaign => {
                 const div = document.createElement('div');
-                div.className = 'portfolio-home-item';
+                div.className = 'portfolio-home-item campaign-card';
+                div.dataset.campaignId = campaign.id;
                 div.innerHTML = `
-                    <img src="${item.src}" alt="${item.title}" loading="lazy">
+                    <img src="${campaign.coverSrc || imagePath(campaign.cover)}" alt="${campaign.title}" loading="eager">
                     <div class="photo-title">
-                        <h3>${categoryLabels[item.category]}</h3>
+                        <h3>${campaign.title}</h3>
                     </div>
                 `;
                 grid.appendChild(div);
             });
+        }
+
+        function renderCampaignGallery(campaign) {
+            const grid = document.getElementById('portfolioHomeGrid');
+            const heading = document.getElementById('portfolioViewHeading');
+            const title = document.getElementById('portfolioViewTitle');
+            grid.innerHTML = '';
+            grid.classList.add('gallery-mode');
+            title.textContent = campaign.title;
+            heading.hidden = false;
+
+            campaign.images.forEach(number => {
+                const div = document.createElement('div');
+                div.className = 'portfolio-home-item gallery-image';
+                div.innerHTML = `<img src="${imagePath(number)}" alt="${campaign.title}" loading="lazy">`;
+                grid.appendChild(div);
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ============================================
@@ -1480,6 +1592,10 @@
             const targetPage = document.getElementById('page-' + pageName);
             if (targetPage) {
                 targetPage.classList.add('active');
+            }
+
+            if (pageName === 'home') {
+                renderCampaigns();
             }
 
             // Update nav active state
@@ -1502,8 +1618,8 @@
         // EVENT LISTENERS
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Render initial portfolio
-            renderPortfolio();
+            // Render initial campaign covers
+            renderCampaigns();
 
             // Nav links
             document.querySelectorAll('[data-page]').forEach(el => {
@@ -1563,11 +1679,18 @@
             document.getElementById('portfolioHomeGrid').addEventListener('click', function(e) {
                 const item = e.target.closest('.portfolio-home-item');
                 if (item) {
+                    const campaign = campaigns.find(entry => entry.id === item.dataset.campaignId);
+                    if (campaign) {
+                        renderCampaignGallery(campaign);
+                        return;
+                    }
                     const img = item.querySelector('img');
                     lightboxImg.src = img.src;
                     lightbox.classList.add('active');
                 }
             });
+
+            document.getElementById('portfolioBackButton').addEventListener('click', renderCampaigns);
 
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox || e.target === lightboxClose) {
