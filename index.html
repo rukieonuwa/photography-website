@@ -1517,9 +1517,10 @@
         const pixiesetImagePath = (album, number) => {
             const filename = `pixieset/${album}-${String(number).padStart(2, '0')}.jpg`;
             const isLocalPreview = window.location.protocol === 'file:' || ['127.0.0.1', 'localhost'].includes(window.location.hostname);
-            return isLocalPreview
+            const assetPath = isLocalPreview
                 ? `assets/images/${filename}`
                 : `https://rukieonuwa.github.io/photography-website/assets/images/${filename}`;
+            return `${assetPath}?v=20260911-hq`;
         };
 
         const selectedPixiesetImages = (album, numbers) =>
@@ -1546,7 +1547,7 @@
                 id: 'feran-jewelry',
                 title: 'Feran Jewelry',
                 coverSrc: 'https://rukieonuwa.github.io/photography-website/assets/images/feran-jewelry-cover.jpg',
-                images: selectedPixiesetImages('feran', [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25])
+                images: selectedPixiesetImages('feran', [1, 2, 3, 4, 6, 8, 9, 10, 11, 13, 14, 15, 16, 18, 21, 22, 24])
             },
             {
                 id: 'cacc-race',
