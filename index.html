@@ -1515,7 +1515,7 @@
         // New Pixieset campaign images use local files for this preview and the
         // GitHub-hosted equivalents after publication.
         const pixiesetImagePath = (album, number) => {
-            const filename = `pixieset/${album}-${String(number).padStart(2, '0')}.jpg`;
+            const filename = `pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`;
             const isLocalPreview = window.location.protocol === 'file:' || ['127.0.0.1', 'localhost'].includes(window.location.hostname);
             const assetPath = isLocalPreview
                 ? `assets/images/${filename}`
