@@ -233,6 +233,12 @@
             object-fit: cover;
         }
 
+        .portfolio-home-item picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .portfolio-home-grid.gallery-mode .portfolio-home-item {
             aspect-ratio: auto;
             break-inside: avoid;
@@ -240,6 +246,10 @@
         }
 
         .portfolio-home-grid.gallery-mode .portfolio-home-item img {
+            height: auto;
+        }
+
+        .portfolio-home-grid.gallery-mode .portfolio-home-item picture {
             height: auto;
         }
 
@@ -1523,22 +1533,38 @@
         const imagePath = (number) =>
             imageAssetPath(`portfolio-${String(number).padStart(2, '0')}.jpg`);
 
-        // Mobile receives an 800px image (sharp at phone size); larger screens
-        // receive the highest-quality version available for each cover.
+        // Like Squarespace, provide several mobile sizes and let each browser
+        // choose based on the image's on-screen size and display sharpness.
+        // We do not guess a visitor's network quality.
+        const mobileImageWidths = [320, 500, 750, 1000];
+        const mobileImageSrcset = (filename) => mobileImageWidths
+            .map(width => `${imageAssetPath(`${filename}-${width}.jpg`)}?v=20260911-responsive ${width}w`)
+            .join(', ');
+
+        // Larger screens keep their existing high-quality cover sources.
         const responsiveCover = (name, largeWidth) => ({
             src: imageAssetPath(`covers/${name}-800.jpg`),
-            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)} 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)} ${largeWidth}w`
+            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)} 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)} ${largeWidth}w`,
+            mobileSrcset: mobileImageSrcset(`covers/${name}-mobile`)
         });
 
         // New Pixieset campaign images use local files for this preview and the
         // GitHub-hosted equivalents after publication.
         const pixiesetImagePath = (album, number) => {
-            const filename = `pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`;
-            return `${imageAssetPath(filename)}?v=20260911-hq`;
+            const filename = `pixieset/${album}-${String(number).padStart(2, '0')}`;
+            return {
+                mobileSrcset: mobileImageSrcset(`${filename}-mobile`),
+                desktop: `${imageAssetPath(`${filename}-hq.jpg`)}?v=20260911-hq`
+            };
         };
 
+        const pixiesetDesktopImagePath = (album, number) =>
+            `${imageAssetPath(`pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`)}?v=20260911-hq`;
+
         const selectedPixiesetImages = (album, numbers) =>
-            numbers.map(number => pixiesetImagePath(album, number));
+            numbers.map((number, index) => index < 4
+                ? pixiesetImagePath(album, number)
+                : pixiesetDesktopImagePath(album, number));
 
         // Remember where a visitor was in All Works before opening an album.
         let portfolioReturnScrollY = 0;
@@ -1594,11 +1620,17 @@
                 div.dataset.campaignId = campaign.id;
                 const coverImage = campaign.coverImage || { src: campaign.coverSrc || imagePath(campaign.cover) };
                 const responsiveAttributes = coverImage.srcset
-                    ? ` srcset="${coverImage.srcset}" sizes="(max-width: 767px) 100vw, 50vw"`
+                    ? ` srcset="${coverImage.srcset}" sizes="50vw"`
                     : '';
                 const shouldPrioritize = index < 2;
+                const coverHtml = coverImage.mobileSrcset
+                    ? `<picture>
+                        <source media="(max-width: 767px)" srcset="${coverImage.mobileSrcset}" sizes="88vw">
+                        <img src="${coverImage.src}"${responsiveAttributes} alt="${campaign.title}" loading="${shouldPrioritize ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
+                    </picture>`
+                    : `<img src="${coverImage.src}"${responsiveAttributes} alt="${campaign.title}" loading="${shouldPrioritize ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">`;
                 div.innerHTML = `
-                    <img src="${coverImage.src}"${responsiveAttributes} alt="${campaign.title}" loading="${shouldPrioritize ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
+                    ${coverHtml}
                     <div class="photo-title">
                         <h3>${campaign.title}</h3>
                     </div>
@@ -1623,10 +1655,17 @@
             title.textContent = campaign.title;
             heading.hidden = false;
 
-            campaign.images.forEach(src => {
+            campaign.images.forEach((source, index) => {
                 const div = document.createElement('div');
                 div.className = 'portfolio-home-item gallery-image';
-                div.innerHTML = `<img src="${src}" alt="${campaign.title}" loading="lazy">`;
+                const shouldPreload = index < 4;
+                const imageHtml = typeof source === 'string'
+                    ? `<img src="${source}" alt="${campaign.title}" loading="${shouldPreload ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">`
+                    : `<picture>
+                        <source media="(max-width: 767px)" srcset="${source.mobileSrcset}" sizes="50vw">
+                        <img src="${source.desktop}" alt="${campaign.title}" loading="${shouldPreload ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
+                    </picture>`;
+                div.innerHTML = imageHtml;
                 grid.appendChild(div);
             });
 
