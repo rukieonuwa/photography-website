@@ -1516,18 +1516,25 @@
         // ============================================
         // PORTFOLIO DATA
         // ============================================
+        const isLocalPreview = window.location.protocol === 'file:' || ['127.0.0.1', 'localhost'].includes(window.location.hostname);
+        const imageAssetPath = (filename) => isLocalPreview
+            ? `assets/images/${filename}`
+            : `https://rukieonuwa.github.io/photography-website/assets/images/${filename}`;
         const imagePath = (number) =>
-            `https://rukieonuwa.github.io/photography-website/assets/images/portfolio-${String(number).padStart(2, '0')}.jpg`;
+            imageAssetPath(`portfolio-${String(number).padStart(2, '0')}.jpg`);
+
+        // Mobile receives an 800px image (sharp at phone size); larger screens
+        // receive the highest-quality version available for each cover.
+        const responsiveCover = (name, largeWidth) => ({
+            src: imageAssetPath(`covers/${name}-800.jpg`),
+            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)} 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)} ${largeWidth}w`
+        });
 
         // New Pixieset campaign images use local files for this preview and the
         // GitHub-hosted equivalents after publication.
         const pixiesetImagePath = (album, number) => {
             const filename = `pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`;
-            const isLocalPreview = window.location.protocol === 'file:' || ['127.0.0.1', 'localhost'].includes(window.location.hostname);
-            const assetPath = isLocalPreview
-                ? `assets/images/${filename}`
-                : `https://rukieonuwa.github.io/photography-website/assets/images/${filename}`;
-            return `${assetPath}?v=20260911-hq`;
+            return `${imageAssetPath(filename)}?v=20260911-hq`;
         };
 
         const selectedPixiesetImages = (album, numbers) =>
@@ -1541,31 +1548,31 @@
             {
                 id: 'dale-xtreme-fit',
                 title: 'Dale x Xtreme Fit',
-                coverSrc: 'https://rukieonuwa.github.io/photography-website/assets/images/dale-xtreme-fit-cover-02.jpg',
+                coverImage: responsiveCover('dale', 1600),
                 images: selectedPixiesetImages('dale', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
             },
             {
                 id: 'derin-editorial',
                 title: 'Derin Bepo',
-                cover: 1,
+                coverImage: responsiveCover('derin', 1451),
                 images: selectedPixiesetImages('derin', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             },
             {
                 id: 'feran-jewelry',
                 title: 'Feran Jewelry',
-                coverSrc: 'https://rukieonuwa.github.io/photography-website/assets/images/feran-jewelry-cover.jpg',
+                coverImage: responsiveCover('feran', 1600),
                 images: selectedPixiesetImages('feran', [1, 2, 3, 4, 6, 8, 9, 10, 11, 13, 14, 15, 16, 18, 21, 22, 24])
             },
             {
                 id: 'cacc-race',
                 title: 'CACC Race',
-                cover: 27,
+                coverImage: responsiveCover('cacc', 1333),
                 images: selectedPixiesetImages('cacc', [1, 2, 3, 4, 5, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19])
             },
             {
                 id: 'face-behind-feran',
                 title: 'The Face Behind Feran',
-                cover: 11,
+                coverImage: responsiveCover('face', 1397),
                 images: selectedPixiesetImages('face', [1, 2, 3, 5, 6, 7, 8, 10, 13, 17, 18, 22, 23, 25, 33, 36, 37])
             }
         ];
@@ -1581,12 +1588,17 @@
             grid.classList.remove('gallery-mode');
             heading.hidden = true;
 
-            campaigns.forEach(campaign => {
+            campaigns.forEach((campaign, index) => {
                 const div = document.createElement('div');
                 div.className = 'portfolio-home-item campaign-card';
                 div.dataset.campaignId = campaign.id;
+                const coverImage = campaign.coverImage || { src: campaign.coverSrc || imagePath(campaign.cover) };
+                const responsiveAttributes = coverImage.srcset
+                    ? ` srcset="${coverImage.srcset}" sizes="(max-width: 767px) 100vw, 50vw"`
+                    : '';
+                const shouldPrioritize = index < 2;
                 div.innerHTML = `
-                    <img src="${campaign.coverSrc || imagePath(campaign.cover)}" alt="${campaign.title}" loading="eager">
+                    <img src="${coverImage.src}"${responsiveAttributes} alt="${campaign.title}" loading="${shouldPrioritize ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
                     <div class="photo-title">
                         <h3>${campaign.title}</h3>
                     </div>
