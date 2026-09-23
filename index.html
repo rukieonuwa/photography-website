@@ -1538,13 +1538,13 @@
         // We do not guess a visitor's network quality.
         const mobileImageWidths = [320, 500, 750, 1000];
         const mobileImageSrcset = (filename) => mobileImageWidths
-            .map(width => `${imageAssetPath(`${filename}-${width}.jpg`)}?v=20260911-responsive ${width}w`)
+            .map(width => `${imageAssetPath(`${filename}-${width}.jpg`)}?v=20260922-soft-grade ${width}w`)
             .join(', ');
 
         // Larger screens keep their existing high-quality cover sources.
         const responsiveCover = (name, largeWidth) => ({
-            src: imageAssetPath(`covers/${name}-800.jpg`),
-            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)} 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)} ${largeWidth}w`,
+            src: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=20260922-soft-grade`,
+            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=20260922-soft-grade 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)}?v=20260922-soft-grade ${largeWidth}w`,
             mobileSrcset: mobileImageSrcset(`covers/${name}-mobile`)
         });
 
@@ -1554,12 +1554,12 @@
             const filename = `pixieset/${album}-${String(number).padStart(2, '0')}`;
             return {
                 mobileSrcset: mobileImageSrcset(`${filename}-mobile`),
-                desktop: `${imageAssetPath(`${filename}-hq.jpg`)}?v=20260911-hq`
+                desktop: `${imageAssetPath(`${filename}-hq.jpg`)}?v=20260922-soft-grade`
             };
         };
 
         const pixiesetDesktopImagePath = (album, number) =>
-            `${imageAssetPath(`pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`)}?v=20260911-hq`;
+            `${imageAssetPath(`pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`)}?v=20260922-soft-grade`;
 
         const selectedPixiesetImages = (album, numbers) =>
             numbers.map((number, index) => index < 4
