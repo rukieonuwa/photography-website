@@ -1045,6 +1045,137 @@
         /* ======================= */
         /* RESPONSIVE */
         /* ======================= */
+        /* ======================= */
+        /* PRICING PAGE */
+        /* ======================= */
+        .pricing-page-inner {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 7rem 6% 7rem;
+        }
+
+        .pricing-group {
+            display: grid;
+            grid-template-columns: minmax(190px, 0.5fr) 1.5fr;
+            gap: 6vw;
+            padding: 4.5rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.16);
+        }
+
+        .pricing-group-title {
+            color: var(--warm);
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 4px;
+            text-transform: lowercase;
+        }
+
+        .pricing-offer + .pricing-offer {
+            margin-top: 0.9rem;
+            padding-top: 3.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.16);
+        }
+
+        .pricing-offer-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .pricing-offer h3 {
+            margin-bottom: 0.7rem;
+            font-size: clamp(2.1rem, 4vw, 4rem);
+            font-weight: 200;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+        }
+
+        .pricing-offer p {
+            max-width: 760px;
+            font-size: 1.05rem;
+        }
+
+        .pricing-starting-price {
+            min-width: 165px;
+            text-align: right;
+        }
+
+        .pricing-starting-price small {
+            display: block;
+            color: var(--warm);
+            font-size: 0.72rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .pricing-starting-price strong {
+            display: block;
+            margin: 0.25rem 0 0.8rem;
+            font-size: 2rem;
+            font-weight: 200;
+        }
+
+        .pricing-text-link {
+            display: inline-block;
+            padding-bottom: 0.1rem;
+            border-bottom: 1px solid var(--black);
+            color: var(--black);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: opacity 0.3s ease;
+        }
+
+        .pricing-text-link:hover { opacity: 0.45; }
+
+        .pricing-offer .pricing-offer-note {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 2.5rem;
+            color: var(--black);
+            font-size: 0.72rem;
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: 0.015em;
+        }
+
+        .pricing-info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            flex: 0 0 15px;
+            border: 1px solid var(--black);
+            border-radius: 50%;
+            font-size: 0.58rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .pricing-offer-note strong { font-weight: 600; }
+
+        .pricing-custom-package {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding: 3.5rem;
+            border: 1px solid var(--black);
+        }
+
+        .pricing-custom-package h2 {
+            margin-bottom: 0.25rem;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 200;
+        }
+
         @media (max-width: 1200px) {
             .hero h2 {
                 font-size: 3rem;
@@ -1240,6 +1371,23 @@
                 font-size: 2rem;
             }
 
+            .pricing-page-inner { padding: 3rem 7% 5rem; }
+
+            .pricing-group {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 3.5rem 0;
+            }
+
+            .pricing-offer-row { grid-template-columns: 1fr; }
+            .pricing-starting-price { text-align: left; }
+
+            .pricing-custom-package {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 2.5rem;
+            }
+
         }
 
         @media (max-width: 480px) {
@@ -1308,7 +1456,7 @@
             <ul class="nav-links">
                 <li><a data-page="home" class="active">home</a></li>
                 <li><a data-page="services">services</a></li>
-                <li><a href="pricing.html">pricing</a></li>
+                <li><a href="?page=pricing" data-page="pricing">pricing</a></li>
                 <li><a data-page="about">about / contact</a></li>
             </ul>
             <div class="menu-btn">
@@ -1397,6 +1545,120 @@
                 Contact Me
             </button>
         </div>
+    </div>
+
+    <!-- ============================= -->
+    <!-- PRICING PAGE -->
+    <!-- ============================= -->
+    <div class="page" id="page-pricing">
+        <main class="pricing-page-inner">
+            <section class="pricing-group">
+                <h2 class="pricing-group-title">For Individuals &amp; Families</h2>
+                <div>
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Editorial Portraits</h3>
+                                <p>Editorial-style portraits for models, content creators, and creatives, with a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Starting at</small>
+                                <strong>$325</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Editorial%20Portrait%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                        <p class="pricing-offer-note"><span class="pricing-info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                    </article>
+
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Headshots</h3>
+                                <p>A focused 30–60 minute session for professionals, business owners, and creatives, with a posing guide included.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Starting at</small>
+                                <strong>$250</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Headshot%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                        <p class="pricing-offer-note"><span class="pricing-info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                    </article>
+
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Family Photography</h3>
+                                <p>Relaxed family portraits that capture your connection naturally, with a posing guide included.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Starting at</small>
+                                <strong>$400</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Family%20Photography%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                        <p class="pricing-offer-note"><span class="pricing-info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="pricing-group">
+                <h2 class="pricing-group-title">For Businesses</h2>
+                <div>
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Business Content</h3>
+                                <p>A focused half-day shoot for lifestyle content and fresh brand photography to update your website, with a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Starting at</small>
+                                <strong>$700</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Business%20Content%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                        <p class="pricing-offer-note"><span class="pricing-info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                    </article>
+
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Brand Campaign &amp; Imagery</h3>
+                                <p>A planned half- or full-day brand campaign with photography and video, including a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Starting at</small>
+                                <strong>$1,200</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Brand%20Campaign%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                        <p class="pricing-offer-note"><span class="pricing-info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                    </article>
+
+                    <article class="pricing-offer">
+                        <div class="pricing-offer-row">
+                            <div>
+                                <h3>Mini Events</h3>
+                                <p>Short event coverage for workshops, pop-ups, launches, and other small business gatherings.</p>
+                            </div>
+                            <div class="pricing-starting-price">
+                                <small>Special pricing</small>
+                                <strong>By inquiry</strong>
+                                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Mini%20Event%20Inquiry">Reach out to me</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="pricing-custom-package">
+                <div>
+                    <h2>Looking for a custom package?</h2>
+                    <p>If you want a custom package, reach out to me.</p>
+                </div>
+                <a class="pricing-text-link" href="mailto:connect@rukieonuwa.com?subject=Custom%20Photography%20Package">Reach out to me</a>
+            </section>
+        </main>
     </div>
 
     <!-- ============================= -->
@@ -1723,9 +1985,11 @@
             // Render initial campaign covers
             renderCampaigns();
 
-            // Open a requested page when returning from a separate page.
-            const requestedPage = new URLSearchParams(window.location.search).get('page');
-            if (['services', 'about'].includes(requestedPage)) {
+            // Open a requested page, including the custom domain's pricing path.
+            const requestedPage = window.location.pathname.endsWith('/pricing.html')
+                ? 'pricing'
+                : new URLSearchParams(window.location.search).get('page');
+            if (['services', 'pricing', 'about'].includes(requestedPage)) {
                 navigateTo(requestedPage);
             }
 
