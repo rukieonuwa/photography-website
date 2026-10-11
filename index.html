@@ -262,6 +262,11 @@
             transform-origin: center 62%;
         }
 
+        .portfolio-home-grid[data-open-campaign="bfrwellness"] .gallery-image.crop-more-top img {
+            transform: scale(1.18);
+            transform-origin: center 75%;
+        }
+
         .portfolio-home-grid.gallery-mode {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1901,7 +1906,8 @@
                 title: 'BFRwellness',
                 coverImage: responsiveCover('bfrwellness', 1024),
                 showImageNumbers: false,
-                images: selectedPixiesetImages('bfrwellness', [21, 10, 22, 13, 20, 25, 5, 11, 24, 29, 27, 7, 19, 17, 1, 14, 23, 12, 18, 26, 6, 15, 9], [1, 29])
+                topCropIndexes: [4, 13, 18, 19, 20],
+                images: selectedPixiesetImages('bfrwellness', [21, 10, 22, 13, 20, 25, 5, 11, 24, 29, 27, 7, 19, 17, 1, 14, 23, 12, 18, 26, 6, 15], [1, 29])
             },
             {
                 id: 'dale-xtreme-fit',
@@ -2001,6 +2007,9 @@
             galleryImages.forEach((source, index) => {
                 const div = document.createElement('div');
                 div.className = 'portfolio-home-item gallery-image';
+                if (campaign.topCropIndexes?.includes(index + 1)) {
+                    div.classList.add('crop-more-top');
+                }
                 const shouldPreload = index < 4;
                 const imageHtml = typeof source === 'string'
                     ? `<img src="${source}" alt="${campaign.title}" loading="${shouldPreload ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">`
