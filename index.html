@@ -259,6 +259,28 @@
             column-gap: 0.75rem;
         }
 
+        .gallery-image-number {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            height: 2rem;
+            padding: 0 0.55rem;
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            background: rgba(0, 0, 0, 0.68);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: 0.04em;
+            pointer-events: none;
+        }
+
         .portfolio-home-item .photo-title {
             position: absolute;
             top: 0;
@@ -1331,6 +1353,15 @@
                 margin-bottom: 0.65rem;
             }
 
+            .gallery-image-number {
+                top: 0.45rem;
+                left: 0.45rem;
+                min-width: 1.65rem;
+                height: 1.65rem;
+                padding: 0 0.4rem;
+                font-size: 0.68rem;
+            }
+
             .portfolio-home-item {
                 aspect-ratio: 3 / 2;
             }
@@ -1838,6 +1869,7 @@
                 id: 'bfrwellness',
                 title: 'BFRwellness',
                 coverImage: responsiveCover('bfrwellness', 1024),
+                showImageNumbers: true,
                 images: selectedPixiesetImages('bfrwellness', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28])
             },
             {
@@ -1934,7 +1966,10 @@
                         <source media="(max-width: 767px)" srcset="${source.mobileSrcset}" sizes="50vw">
                         <img src="${source.desktop}" alt="${campaign.title}" loading="${shouldPreload ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
                     </picture>`;
-                div.innerHTML = imageHtml;
+                const numberHtml = campaign.showImageNumbers
+                    ? `<span class="gallery-image-number" aria-label="Photo ${index + 1}">${index + 1}</span>`
+                    : '';
+                div.innerHTML = `${imageHtml}${numberHtml}`;
                 grid.appendChild(div);
             });
 
