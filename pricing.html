@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Rukie Onuwa Photography</title>
+    <meta name="description" content="Starting prices for portraits, headshots, family photography, and business brand imagery by Vancouver photographer Rukie Onuwa.">
+    <link rel="icon" type="image/png" href="https://pfst.cf2.poecdn.net/base/image/34d849d563ef623fda69ab35dda70095f9dcb2872e48dcc30fd9733d28a1654a?w=365&h=365">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #000000;
+            --warm: #b8956e;
+            --cream: #ffffff;
+            --line: rgba(0, 0, 0, 0.16);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            background: var(--cream);
+            color: var(--black);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--warm); color: #ffffff; }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 4%;
+            background: var(--cream);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-img { display: block; width: auto; height: 90px; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--black);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: lowercase;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover { opacity: 0.4; }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 7px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 2rem;
+            right: 4%;
+            width: 42px;
+            height: 32px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .menu-btn span {
+            width: 35px;
+            height: 1px;
+            background: var(--black);
+            transition: all 0.4s ease;
+            transform-origin: center;
+        }
+
+        main {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 12rem 6% 7rem;
+        }
+
+        h2 { font-weight: 200; letter-spacing: 0.02em; }
+
+        .offer .offer-note {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 2.5rem;
+            color: var(--black);
+            font-size: 0.72rem;
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: 0.015em;
+        }
+
+        .offer-note .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            flex: 0 0 15px;
+            border: 1px solid var(--black);
+            border-radius: 50%;
+            font-size: 0.58rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .offer-note strong {
+            font-weight: 600;
+        }
+
+        .price-group {
+            display: grid;
+            grid-template-columns: minmax(190px, 0.5fr) 1.5fr;
+            gap: 6vw;
+            padding: 4.5rem 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .group-title {
+            color: var(--warm);
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 4px;
+            text-transform: lowercase;
+        }
+
+        .offer + .offer {
+            margin-top: 0.9rem;
+            padding-top: 3.5rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .offer-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .offer h3 {
+            margin-bottom: 0.7rem;
+            font-size: clamp(2.1rem, 4vw, 4rem);
+            font-weight: 200;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+        }
+
+        .offer p { max-width: 760px; font-size: 1.05rem; }
+
+        .starting-price {
+            min-width: 165px;
+            text-align: right;
+        }
+
+        .starting-price small {
+            display: block;
+            color: var(--warm);
+            font-size: 0.72rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .starting-price strong {
+            display: block;
+            margin: 0.25rem 0 0.8rem;
+            font-size: 2rem;
+            font-weight: 200;
+        }
+
+        .text-link {
+            display: inline-block;
+            padding-bottom: 0.1rem;
+            border-bottom: 1px solid var(--black);
+            color: var(--black);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: opacity 0.3s ease;
+        }
+
+        .text-link:hover { opacity: 0.45; }
+
+        .custom-package {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding: 3.5rem;
+            border: 1px solid var(--black);
+        }
+
+        .custom-package h2 {
+            margin-bottom: 0.25rem;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+        }
+
+        footer {
+            padding: 2rem 6% 3rem;
+            background: var(--cream);
+            color: var(--black);
+            text-align: center;
+        }
+
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social-links a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-links a:hover { color: var(--warm); }
+
+        .footer-bottom p { font-size: 0.78rem; }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--cream);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .menu-toggle:checked ~ .nav-links { right: 0; }
+            .nav-links a { font-size: 1.5rem; }
+            .menu-toggle { display: block; }
+            .menu-btn { display: flex; }
+            .menu-toggle:checked ~ .menu-btn span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .menu-toggle:checked ~ .menu-btn span:nth-child(2) { opacity: 0; }
+            .menu-toggle:checked ~ .menu-btn span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+            main { padding: 9rem 7% 5rem; }
+            .price-group { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 0; }
+            .offer-row { grid-template-columns: 1fr; }
+            .starting-price { text-align: left; }
+            .custom-package { align-items: flex-start; flex-direction: column; padding: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img { height: 65px; }
+            .menu-toggle { top: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" aria-label="Rukie Onuwa home">
+                <img class="logo-img" src="https://pfst.cf2.poecdn.net/base/image/c3fb92d0e3d1f075200c7f0ffe61a64d3426614594270033c14950c3f6cd6ecd?w=1030&amp;h=410" alt="Rukie Onuwa Visual Storytelling">
+            </a>
+            <input class="menu-toggle" type="checkbox" id="pricing-menu-toggle" aria-label="Open menu">
+            <ul class="nav-links">
+                <li><a href="index.html">home</a></li>
+                <li><a href="index.html?page=services">services</a></li>
+                <li><a href="pricing.html" aria-current="page">pricing</a></li>
+                <li><a href="index.html?page=about">about / contact</a></li>
+            </ul>
+            <label class="menu-btn" for="pricing-menu-toggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </label>
+        </nav>
+    </header>
+
+    <main>
+        <section class="price-group">
+            <h2 class="group-title">For Individuals &amp; Families</h2>
+            <div>
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Editorial Portraits</h3>
+                            <p>Editorial-style portraits for models, content creators, and creatives, with a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Starting at</small>
+                            <strong>$325</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Editorial%20Portrait%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                    <p class="offer-note"><span class="info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                </article>
+
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Headshots</h3>
+                            <p>A focused 30–60 minute session for professionals, business owners, and creatives, with a posing guide included.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Starting at</small>
+                            <strong>$250</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Headshot%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                    <p class="offer-note"><span class="info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                </article>
+
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Family Photography</h3>
+                            <p>Relaxed family portraits that capture your connection naturally, with a posing guide included.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Starting at</small>
+                            <strong>$400</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Family%20Photography%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                    <p class="offer-note"><span class="info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="price-group">
+            <h2 class="group-title">For Businesses</h2>
+            <div>
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Business Content</h3>
+                            <p>A focused half-day shoot for lifestyle content and fresh brand photography to update your website, with a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Starting at</small>
+                            <strong>$700</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Business%20Content%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                    <p class="offer-note"><span class="info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                </article>
+
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Brand Campaign &amp; Imagery</h3>
+                            <p>A planned half- or full-day brand campaign with photography and video, including a posing guide, mood board setup, creative direction, and location scouting if needed.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Starting at</small>
+                            <strong>$1,200</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Brand%20Campaign%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                    <p class="offer-note"><span class="info-icon" aria-hidden="true">i</span><span><strong>Studio</strong> rental fees are not included in the starting prices shown.</span></p>
+                </article>
+
+                <article class="offer">
+                    <div class="offer-row">
+                        <div>
+                            <h3>Mini Events</h3>
+                            <p>Short event coverage for workshops, pop-ups, launches, and other small business gatherings.</p>
+                        </div>
+                        <div class="starting-price">
+                            <small>Special pricing</small>
+                            <strong>By inquiry</strong>
+                            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Mini%20Event%20Inquiry">Reach out to me</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="custom-package">
+            <div>
+                <h2>Looking for a custom package?</h2>
+                <p>If you want a custom package, reach out to me.</p>
+            </div>
+            <a class="text-link" href="mailto:connect@rukieonuwa.com?subject=Custom%20Photography%20Package">Reach out to me</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/byrukieonuwa?stkn=MWR1NHZpajcwc3kzag%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="mailto:connect@rukieonuwa.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="footer-bottom">
+            <p>Vancouver BC</p>
+            <p>&copy; 2026 Rukie Onuwa, all rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

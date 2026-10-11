@@ -1308,6 +1308,7 @@
             <ul class="nav-links">
                 <li><a data-page="home" class="active">home</a></li>
                 <li><a data-page="services">services</a></li>
+                <li><a href="pricing.html">pricing</a></li>
                 <li><a data-page="about">about / contact</a></li>
             </ul>
             <div class="menu-btn">
@@ -1721,6 +1722,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Render initial campaign covers
             renderCampaigns();
+
+            // Open a requested page when returning from a separate page.
+            const requestedPage = new URLSearchParams(window.location.search).get('page');
+            if (['services', 'about'].includes(requestedPage)) {
+                navigateTo(requestedPage);
+            }
 
             // Nav links
             document.querySelectorAll('[data-page]').forEach(el => {
