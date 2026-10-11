@@ -279,12 +279,6 @@
             gap: 0.75rem;
         }
 
-        .portfolio-home-grid.gallery-mode .gallery-ending {
-            grid-column: 1 / -1;
-            width: calc((100% - 1.5rem) / 3);
-            justify-self: end;
-        }
-
         .gallery-image-number {
             position: absolute;
             top: 0.75rem;
@@ -1379,10 +1373,6 @@
                 gap: 0.65rem;
             }
 
-            .portfolio-home-grid.gallery-mode .gallery-ending {
-                width: calc((100% - 0.65rem) / 2);
-            }
-
             .gallery-image-number {
                 top: 0.45rem;
                 left: 0.45rem;
@@ -2021,12 +2011,7 @@
                     ? `<span class="gallery-image-number" aria-label="Photo ${index + 1}">${index + 1}</span>`
                     : '';
                 div.innerHTML = `${imageHtml}${numberHtml}`;
-                if (index === galleryImages.length - 1) {
-                    div.classList.add('gallery-ending');
-                    grid.appendChild(div);
-                } else {
-                    galleryColumns[index % columnCount].appendChild(div);
-                }
+                galleryColumns[index % columnCount].appendChild(div);
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
