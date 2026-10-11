@@ -241,8 +241,7 @@
 
         .portfolio-home-grid.gallery-mode .portfolio-home-item {
             aspect-ratio: auto;
-            break-inside: avoid;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0;
         }
 
         .portfolio-home-grid.gallery-mode .portfolio-home-item img {
@@ -254,9 +253,21 @@
         }
 
         .portfolio-home-grid.gallery-mode {
-            display: block;
-            columns: 3;
-            column-gap: 0.75rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .gallery-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .portfolio-home-grid.gallery-mode .gallery-ending {
+            grid-column: 1 / -1;
+            width: calc((100% - 1.5rem) / 3);
+            justify-self: end;
         }
 
         .gallery-image-number {
@@ -1344,13 +1355,17 @@
             }
 
             .portfolio-home-grid.gallery-mode {
-                display: block;
-                columns: 2;
-                column-gap: 0.65rem;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.65rem;
             }
 
-            .portfolio-home-grid.gallery-mode .portfolio-home-item {
-                margin-bottom: 0.65rem;
+            .gallery-column {
+                gap: 0.65rem;
+            }
+
+            .portfolio-home-grid.gallery-mode .gallery-ending {
+                width: calc((100% - 0.65rem) / 2);
             }
 
             .gallery-image-number {
@@ -1836,11 +1851,17 @@
             .join(', ');
 
         // Larger screens keep their existing high-quality cover sources.
-        const responsiveCover = (name, largeWidth) => ({
-            src: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=20260922-soft-grade`,
-            srcset: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=20260922-soft-grade 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)}?v=20260922-soft-grade ${largeWidth}w`,
-            mobileSrcset: mobileImageSrcset(`covers/${name}-mobile`)
-        });
+        const responsiveCover = (name, largeWidth) => {
+            const version = name === 'bfrwellness' ? '20261010-bfr-cover' : '20260922-soft-grade';
+            const mobileSrcset = mobileImageWidths
+                .map(width => `${imageAssetPath(`covers/${name}-mobile-${width}.jpg`)}?v=${version} ${width}w`)
+                .join(', ');
+            return {
+                src: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=${version}`,
+                srcset: `${imageAssetPath(`covers/${name}-800.jpg`)}?v=${version} 800w, ${imageAssetPath(`covers/${name}-${largeWidth}.jpg`)}?v=${version} ${largeWidth}w`,
+                mobileSrcset
+            };
+        };
 
         // New Pixieset campaign images use local files for this preview and the
         // GitHub-hosted equivalents after publication.
@@ -1870,7 +1891,7 @@
                 title: 'BFRwellness',
                 coverImage: responsiveCover('bfrwellness', 1024),
                 showImageNumbers: true,
-                images: selectedPixiesetImages('bfrwellness', [9, 10, 19, 20, 21, 17, 1, 14, 11, 22, 23, 24, 12, 29, 18, 13, 5, 25, 27, 26, 6, 7, 15], [1, 29])
+                images: selectedPixiesetImages('bfrwellness', [10, 13, 22, 11, 20, 21, 5, 24, 29, 27, 7, 19, 17, 1, 14, 23, 12, 18, 25, 26, 6, 15, 9], [1, 29])
             },
             {
                 id: 'dale-xtreme-fit',
@@ -1956,7 +1977,16 @@
             title.textContent = campaign.title;
             heading.hidden = false;
 
-            campaign.images.forEach((source, index) => {
+            const galleryImages = campaign.images;
+            const columnCount = window.matchMedia('(max-width: 1024px)').matches ? 2 : 3;
+            const galleryColumns = Array.from({ length: columnCount }, () => {
+                const column = document.createElement('div');
+                column.className = 'gallery-column';
+                grid.appendChild(column);
+                return column;
+            });
+
+            galleryImages.forEach((source, index) => {
                 const div = document.createElement('div');
                 div.className = 'portfolio-home-item gallery-image';
                 const shouldPreload = index < 4;
@@ -1970,7 +2000,12 @@
                     ? `<span class="gallery-image-number" aria-label="Photo ${index + 1}">${index + 1}</span>`
                     : '';
                 div.innerHTML = `${imageHtml}${numberHtml}`;
-                grid.appendChild(div);
+                if (index === galleryImages.length - 1) {
+                    div.classList.add('gallery-ending');
+                    grid.appendChild(div);
+                } else {
+                    galleryColumns[index % columnCount].appendChild(div);
+                }
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
