@@ -239,6 +239,11 @@
             height: 100%;
         }
 
+        .campaign-card[data-campaign-id="bfrwellness"] img {
+            transform: scale(1.16);
+            transform-origin: center 62%;
+        }
+
         .portfolio-home-grid.gallery-mode .portfolio-home-item {
             aspect-ratio: auto;
             margin-bottom: 0;
@@ -250,6 +255,11 @@
 
         .portfolio-home-grid.gallery-mode .portfolio-home-item picture {
             height: auto;
+        }
+
+        .portfolio-home-grid[data-open-campaign="bfrwellness"] .gallery-image img {
+            transform: scale(1.1);
+            transform-origin: center 62%;
         }
 
         .portfolio-home-grid.gallery-mode {
@@ -1891,7 +1901,7 @@
                 title: 'BFRwellness',
                 coverImage: responsiveCover('bfrwellness', 1024),
                 showImageNumbers: true,
-                images: selectedPixiesetImages('bfrwellness', [10, 13, 22, 11, 20, 21, 5, 24, 29, 27, 7, 19, 17, 1, 14, 23, 12, 18, 25, 26, 6, 15, 9], [1, 29])
+                images: selectedPixiesetImages('bfrwellness', [10, 22, 13, 20, 21, 5, 11, 24, 29, 27, 7, 19, 17, 1, 14, 23, 12, 18, 25, 26, 6, 15, 9], [1, 29])
             },
             {
                 id: 'dale-xtreme-fit',
@@ -1934,6 +1944,7 @@
             const heading = document.getElementById('portfolioViewHeading');
             grid.innerHTML = '';
             grid.classList.remove('gallery-mode');
+            delete grid.dataset.openCampaign;
             heading.hidden = true;
 
             campaigns.forEach((campaign, index) => {
@@ -1974,6 +1985,7 @@
             const title = document.getElementById('portfolioViewTitle');
             grid.innerHTML = '';
             grid.classList.add('gallery-mode');
+            grid.dataset.openCampaign = campaign.id;
             title.textContent = campaign.title;
             heading.hidden = false;
 
