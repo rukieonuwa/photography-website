@@ -244,8 +244,13 @@
             transform-origin: center 62%;
         }
 
+        .campaign-card[data-campaign-id="nike-cooler-temp"] img {
+            object-position: center 62%;
+        }
+
         .portfolio-home-grid.gallery-mode .portfolio-home-item {
             aspect-ratio: auto;
+            width: 100%;
             margin-bottom: 0;
         }
 
@@ -268,15 +273,124 @@
         }
 
         .portfolio-home-grid.gallery-mode {
+            display: block;
+        }
+
+        .gallery-columns {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 0.75rem;
+            align-items: start;
         }
 
         .gallery-column {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
+        }
+
+        .curated-gallery-top-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .curated-gallery-top-row .gallery-image {
+            aspect-ratio: 2 / 3;
+            overflow: hidden;
+        }
+
+        .portfolio-home-grid.gallery-mode .curated-gallery-top-row .gallery-image picture,
+        .portfolio-home-grid.gallery-mode .curated-gallery-top-row .gallery-image img {
+            width: 100%;
+            height: 100% !important;
+        }
+
+        .portfolio-home-grid.gallery-mode .curated-gallery-top-row .gallery-image img {
+            object-fit: cover;
+        }
+
+        .portfolio-home-grid.gallery-mode .curated-gallery-top-row .gallery-image:first-child img {
+            object-position: 25% center;
+        }
+
+        .curated-gallery-masonry {
+            column-count: 3;
+            column-gap: 0.75rem;
+        }
+
+        .curated-gallery-masonry .gallery-image {
+            display: inline-block;
+            width: 100%;
+            margin: 0 0 0.75rem;
+            break-inside: avoid;
+        }
+
+        .next-gallery-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            width: 100%;
+            margin-top: clamp(3rem, 7vw, 7rem);
+            padding-top: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .next-gallery-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 48%;
+            padding: 0.75rem 0;
+            border: 0;
+            background: transparent;
+            color: #111;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(0.78rem, 1.1vw, 1rem);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            line-height: 1.2;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .next-gallery-button.is-next {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .next-gallery-button.is-previous {
+            text-align: left;
+        }
+
+        .next-gallery-button.is-next::after,
+        .next-gallery-button.is-previous::before {
+            content: '→';
+            font-family: Arial, sans-serif;
+            font-size: 1.65em;
+            font-weight: 300;
+            letter-spacing: 0;
+            transition: transform 180ms ease;
+        }
+
+        .next-gallery-button.is-previous::before {
+            content: '←';
+        }
+
+        .next-gallery-button.is-next:hover::after,
+        .next-gallery-button.is-next:focus-visible::after {
+            transform: translateX(0.35rem);
+        }
+
+        .next-gallery-button.is-previous:hover::before,
+        .next-gallery-button.is-previous:focus-visible::before {
+            transform: translateX(-0.35rem);
+        }
+
+        .next-gallery-button:focus-visible {
+            outline: 1px solid currentColor;
+            outline-offset: 0.4rem;
         }
 
         .gallery-image-number {
@@ -1364,13 +1478,51 @@
             }
 
             .portfolio-home-grid.gallery-mode {
-                display: grid;
+                display: block;
+            }
+
+            .gallery-columns {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 0.65rem;
             }
 
             .gallery-column {
                 gap: 0.65rem;
+            }
+
+            .curated-gallery-top-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.65rem;
+                margin-bottom: 0.65rem;
+            }
+
+            .curated-gallery-top-row .gallery-image:nth-child(3) {
+                order: 2;
+            }
+
+            .curated-gallery-top-row .gallery-image:nth-child(2) {
+                order: 3;
+                grid-column: 1 / -1;
+                aspect-ratio: 3 / 2;
+            }
+
+            .curated-gallery-masonry {
+                column-count: 2;
+                column-gap: 0.65rem;
+            }
+
+            .curated-gallery-masonry .gallery-image {
+                margin-bottom: 0.65rem;
+            }
+
+            .next-gallery-nav {
+                margin-top: 2.75rem;
+                padding-top: 1.25rem;
+            }
+
+            .next-gallery-button {
+                gap: 0.7rem;
+                font-size: 0.72rem;
             }
 
             .gallery-image-number {
@@ -1857,7 +2009,11 @@
 
         // Larger screens keep their existing high-quality cover sources.
         const responsiveCover = (name, largeWidth) => {
-            const version = name === 'bfrwellness' ? '20261010-bfr-cover' : '20260922-soft-grade';
+            const version = name === 'bfrwellness'
+                ? '20261010-bfr-cover'
+                : name === 'nike-cooler-temp'
+                    ? '20261106-nike-cover'
+                    : '20260922-soft-grade';
             const mobileSrcset = mobileImageWidths
                 .map(width => `${imageAssetPath(`covers/${name}-mobile-${width}.jpg`)}?v=${version} ${width}w`)
                 .join(', ');
@@ -1891,6 +2047,19 @@
 
         // Campaign titles, covers, and photo groupings.
         const campaigns = [
+            {
+                id: 'nike-cooler-temp',
+                title: 'Nike: On the Track',
+                coverImage: responsiveCover('nike-cooler-temp', 1600),
+                showImageNumbers: false,
+                pinnedTopRowCount: 3,
+                preserveCuratedLayout: true,
+                images: selectedPixiesetImages(
+                    'nike-cooler-temp',
+                    [29, 21, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 28, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22],
+                    [29, 21, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 28, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22]
+                )
+            },
             {
                 id: 'bfrwellness',
                 title: 'BFRwellness',
@@ -1986,13 +2155,8 @@
             heading.hidden = false;
 
             const galleryImages = campaign.images;
-            const columnCount = window.matchMedia('(max-width: 1024px)').matches ? 2 : 3;
-            const galleryColumns = Array.from({ length: columnCount }, () => {
-                const column = document.createElement('div');
-                column.className = 'gallery-column';
-                grid.appendChild(column);
-                return column;
-            });
+            const pinnedTopRowCount = campaign.pinnedTopRowCount || 0;
+            const galleryTiles = [];
 
             galleryImages.forEach((source, index) => {
                 const div = document.createElement('div');
@@ -2011,8 +2175,100 @@
                     ? `<span class="gallery-image-number" aria-label="Photo ${index + 1}">${index + 1}</span>`
                     : '';
                 div.innerHTML = `${imageHtml}${numberHtml}`;
-                galleryColumns[index % columnCount].appendChild(div);
+                galleryTiles.push(div);
             });
+
+            const currentCampaignIndex = campaigns.findIndex(item => item.id === campaign.id);
+            const previousCampaign = campaigns[(currentCampaignIndex - 1 + campaigns.length) % campaigns.length];
+            const nextCampaign = campaigns[(currentCampaignIndex + 1) % campaigns.length];
+            const nextGalleryNav = document.createElement('nav');
+            nextGalleryNav.className = 'next-gallery-nav';
+            nextGalleryNav.setAttribute('aria-label', 'Gallery navigation');
+            const previousGalleryButton = document.createElement('button');
+            previousGalleryButton.type = 'button';
+            previousGalleryButton.className = 'next-gallery-button is-previous';
+            previousGalleryButton.textContent = previousCampaign.title;
+            previousGalleryButton.setAttribute('aria-label', `View previous gallery: ${previousCampaign.title}`);
+            previousGalleryButton.addEventListener('click', () => renderCampaignGallery(previousCampaign));
+            const nextGalleryButton = document.createElement('button');
+            nextGalleryButton.type = 'button';
+            nextGalleryButton.className = 'next-gallery-button is-next';
+            nextGalleryButton.textContent = nextCampaign.title;
+            nextGalleryButton.setAttribute('aria-label', `View next gallery: ${nextCampaign.title}`);
+            nextGalleryButton.addEventListener('click', () => renderCampaignGallery(nextCampaign));
+            if (currentCampaignIndex > 0) {
+                nextGalleryNav.appendChild(previousGalleryButton);
+            }
+            nextGalleryNav.appendChild(nextGalleryButton);
+
+            if (campaign.preserveCuratedLayout && pinnedTopRowCount > 0) {
+                const topRow = document.createElement('div');
+                topRow.className = 'curated-gallery-top-row';
+                const masonry = document.createElement('div');
+                masonry.className = 'curated-gallery-masonry';
+
+                galleryTiles.forEach((tile, index) => {
+                    (index < pinnedTopRowCount ? topRow : masonry).appendChild(tile);
+                });
+
+                grid.append(topRow, masonry, nextGalleryNav);
+                window.activePortfolioGalleryLayout = null;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            let layoutFrame = null;
+            const layoutGallery = () => {
+                if (layoutFrame) cancelAnimationFrame(layoutFrame);
+                layoutFrame = requestAnimationFrame(() => {
+                    const columnCount = window.matchMedia('(max-width: 768px)').matches ? 2 : 3;
+                    const columnsWrap = document.createElement('div');
+                    columnsWrap.className = 'gallery-columns';
+                    const columns = Array.from({ length: columnCount }, () => {
+                        const column = document.createElement('div');
+                        column.className = 'gallery-column';
+                        columnsWrap.appendChild(column);
+                        return column;
+                    });
+                    const estimatedHeights = Array(columnCount).fill(0);
+                    const pinnedIndexes = columnCount === 2 && pinnedTopRowCount >= 3
+                        ? [0, 2]
+                        : Array.from({ length: Math.min(columnCount, pinnedTopRowCount) }, (_, index) => index);
+                    const pinnedSet = new Set(pinnedIndexes);
+
+                    const placeTile = (tileIndex, columnIndex) => {
+                        const tile = galleryTiles[tileIndex];
+                        columns[columnIndex].appendChild(tile);
+                        const image = tile.querySelector('img');
+                        const ratio = image?.naturalWidth && image?.naturalHeight
+                            ? image.naturalHeight / image.naturalWidth
+                            : 1;
+                        estimatedHeights[columnIndex] += ratio + 0.04;
+                    };
+
+                    pinnedIndexes.forEach((tileIndex, columnIndex) => placeTile(tileIndex, columnIndex));
+                    galleryTiles.forEach((tile, tileIndex) => {
+                        if (pinnedSet.has(tileIndex)) return;
+                        const shortestColumn = estimatedHeights.indexOf(Math.min(...estimatedHeights));
+                        placeTile(tileIndex, shortestColumn);
+                    });
+
+                    grid.querySelector('.gallery-columns')?.remove();
+                    grid.appendChild(columnsWrap);
+                    grid.appendChild(nextGalleryNav);
+                });
+            };
+
+            galleryTiles.forEach(tile => {
+                const image = tile.querySelector('img');
+                if (image && !image.complete) image.addEventListener('load', layoutGallery, { once: true });
+            });
+            layoutGallery();
+            window.activePortfolioGalleryLayout = layoutGallery;
+            if (!window.portfolioGalleryResizeBound) {
+                window.addEventListener('resize', () => window.activePortfolioGalleryLayout?.());
+                window.portfolioGalleryResizeBound = true;
+            }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
