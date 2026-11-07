@@ -315,6 +315,16 @@
             object-position: 25% center;
         }
 
+        @media (min-width: 769px) {
+            .curated-gallery-top-row {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .curated-gallery-top-row .gallery-image {
+                aspect-ratio: 3 / 4 !important;
+            }
+        }
+
         .curated-gallery-masonry {
             column-count: 3;
             column-gap: 0.75rem;
@@ -2058,6 +2068,11 @@
                     'nike-cooler-temp',
                     [29, 21, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 28, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22],
                     [29, 21, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 28, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22]
+                ),
+                desktopImages: selectedPixiesetImages(
+                    'nike-cooler-temp',
+                    [29, 28, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 21, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22],
+                    [29, 28, 15, 10, 12, 27, 2, 19, 17, 14, 18, 9, 8, 21, 5, 20, 24, 4, 6, 16, 13, 25, 26, 22]
                 )
             },
             {
@@ -2154,7 +2169,9 @@
             title.textContent = campaign.title;
             heading.hidden = false;
 
-            const galleryImages = campaign.images;
+            const galleryImages = campaign.desktopImages && window.matchMedia('(min-width: 769px)').matches
+                ? campaign.desktopImages
+                : campaign.images;
             const pinnedTopRowCount = campaign.pinnedTopRowCount || 0;
             const galleryTiles = [];
 
