@@ -2013,8 +2013,8 @@
         // choose based on the image's on-screen size and display sharpness.
         // We do not guess a visitor's network quality.
         const mobileImageWidths = [320, 500, 750, 1000];
-        const mobileImageSrcset = (filename) => mobileImageWidths
-            .map(width => `${imageAssetPath(`${filename}-${width}.jpg`)}?v=20260922-soft-grade ${width}w`)
+        const mobileImageSrcset = (filename, version = '20260922-soft-grade') => mobileImageWidths
+            .map(width => `${imageAssetPath(`${filename}-${width}.jpg`)}?v=${version} ${width}w`)
             .join(', ');
 
         // Larger screens keep their existing high-quality cover sources.
@@ -2038,14 +2038,21 @@
         // GitHub-hosted equivalents after publication.
         const pixiesetImagePath = (album, number) => {
             const filename = `pixieset/${album}-${String(number).padStart(2, '0')}`;
+            const version = album === 'nike-cooler-temp'
+                ? '20261108-blue-sky'
+                : '20260922-soft-grade';
             return {
-                mobileSrcset: mobileImageSrcset(`${filename}-mobile`),
-                desktop: `${imageAssetPath(`${filename}-hq.jpg`)}?v=20260922-soft-grade`
+                mobileSrcset: mobileImageSrcset(`${filename}-mobile`, version),
+                desktop: `${imageAssetPath(`${filename}-hq.jpg`)}?v=${version}`
             };
         };
 
-        const pixiesetDesktopImagePath = (album, number) =>
-            `${imageAssetPath(`pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`)}?v=20260922-soft-grade`;
+        const pixiesetDesktopImagePath = (album, number) => {
+            const version = album === 'nike-cooler-temp'
+                ? '20261108-blue-sky'
+                : '20260922-soft-grade';
+            return `${imageAssetPath(`pixieset/${album}-${String(number).padStart(2, '0')}-hq.jpg`)}?v=${version}`;
+        };
 
         const selectedPixiesetImages = (album, numbers, responsiveNumbers = numbers.slice(0, 4)) =>
             numbers.map((number) => responsiveNumbers.includes(number)
