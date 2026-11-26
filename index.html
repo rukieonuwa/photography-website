@@ -1665,12 +1665,12 @@
     <!-- Header -->
     <header>
         <nav>
-            <span class="logo-text" data-page="home"><img class="logo-img" src="https://pfst.cf2.poecdn.net/base/image/c3fb92d0e3d1f075200c7f0ffe61a64d3426614594270033c14950c3f6cd6ecd?w=1030&h=410" alt="Rukie Onuwa Visual Storytelling"></span>
+            <a class="logo-text" href="/" data-page="home"><img class="logo-img" src="https://pfst.cf2.poecdn.net/base/image/c3fb92d0e3d1f075200c7f0ffe61a64d3426614594270033c14950c3f6cd6ecd?w=1030&h=410" alt="Rukie Onuwa Visual Storytelling"></a>
             <ul class="nav-links">
-                <li><a data-page="home" class="active">home</a></li>
-                <li><a data-page="services">services</a></li>
-                <li><a href="?page=pricing" data-page="pricing">pricing</a></li>
-                <li><a data-page="about">about / contact</a></li>
+                <li><a href="/" data-page="home" class="active">home</a></li>
+                <li><a href="/services" data-page="services">services</a></li>
+                <li><a href="/pricing" data-page="pricing">pricing</a></li>
+                <li><a href="/about" data-page="about">about / contact</a></li>
             </ul>
             <div class="menu-btn">
                 <span></span>
@@ -2300,7 +2300,33 @@
         // ============================================
         // PAGE ROUTING
         // ============================================
-        function navigateTo(pageName, { scrollToContact = false } = {}) {
+        const routeBase = window.location.hostname === 'rukieonuwa.github.io' ? '/photography-website' : '';
+
+        function cleanPathFor(pageName, scrollToContact = false) {
+            const routeName = scrollToContact && pageName === 'about' ? 'contact' : pageName;
+            return routeName === 'home' ? `${routeBase}/` : `${routeBase}/${routeName}`;
+        }
+
+        function requestedRoute() {
+            let path = window.location.pathname.replace(/\/+$/, '') || '/';
+            if (routeBase && path.startsWith(routeBase)) {
+                path = path.slice(routeBase.length) || '/';
+            }
+
+            const lastSegment = path.split('/').filter(Boolean).pop() || '';
+            const pathPage = lastSegment.replace(/\.html$/, '');
+            const queryPage = new URLSearchParams(window.location.search).get('page');
+            const requestedPage = ['services', 'pricing', 'about', 'contact'].includes(pathPage)
+                ? pathPage
+                : queryPage;
+
+            return {
+                pageName: requestedPage === 'contact' ? 'about' : requestedPage,
+                scrollToContact: requestedPage === 'contact'
+            };
+        }
+
+        function navigateTo(pageName, { scrollToContact = false, updateHistory = true } = {}) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -2323,6 +2349,13 @@
                     link.classList.add('active');
                 }
             });
+
+            if (updateHistory && !isLocalPreview) {
+                const nextPath = cleanPathFor(pageName, scrollToContact);
+                if (window.location.pathname !== nextPath || window.location.search || window.location.hash) {
+                    window.history.pushState({ pageName, scrollToContact }, '', nextPath);
+                }
+            }
 
             if (scrollToContact && pageName === 'about') {
                 requestAnimationFrame(() => {
@@ -2347,12 +2380,13 @@
             // Render initial campaign covers
             renderCampaigns();
 
-            // Open a requested page, including the custom domain's pricing path.
-            const requestedPage = window.location.pathname.endsWith('/pricing.html')
-                ? 'pricing'
-                : new URLSearchParams(window.location.search).get('page');
-            if (['services', 'pricing', 'about'].includes(requestedPage)) {
-                navigateTo(requestedPage);
+            // Open clean routes and preserve the older .html/query-string links.
+            const initialRoute = requestedRoute();
+            if (['services', 'pricing', 'about'].includes(initialRoute.pageName)) {
+                navigateTo(initialRoute.pageName, {
+                    scrollToContact: initialRoute.scrollToContact,
+                    updateHistory: false
+                });
             }
 
             // Nav links
@@ -2365,16 +2399,19 @@
                 });
             });
 
-            // Logo click goes home
-            document.querySelector('.logo-text').addEventListener('click', function() {
-                navigateTo('home');
-            });
-
             // Services page "fill out the contact form" link
             document.querySelectorAll('.nav-to-contact').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     navigateTo('about', { scrollToContact: true });
+                });
+            });
+
+            window.addEventListener('popstate', function() {
+                const route = requestedRoute();
+                navigateTo(route.pageName || 'home', {
+                    scrollToContact: route.scrollToContact,
+                    updateHistory: false
                 });
             });
 
